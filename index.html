@@ -6,6 +6,7 @@
 <title>파티버디 생일파티 예약</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
 :root{
   --pink:#F7769C; --pink-d:#E0507D; --pink-l:#FFE3EC; --yellow:#FFD966; --yellow-l:#FFF4CF; --mint:#3CC7A6; --mint-d:#1F9F80; --mint-l:#E3F7F1;
@@ -56,9 +57,12 @@ img{max-width:100%}
 .demo{display:inline-block;font-size:11px;font-weight:700;background:#333;color:#fff;border-radius:4px;padding:2px 6px;vertical-align:2px}
 .tbd{font-size:12px;color:#b07a2a;font-weight:700}
 /* home */
-.slides{display:flex;gap:28px;justify-content:center;overflow:hidden}
+.slides{overflow:hidden}
+.slides .swiper-wrapper{align-items:stretch}
 .slide{flex:0 0 min(740px,92vw);height:420px;overflow:hidden;position:relative;cursor:pointer}
 .slide.side{flex:0 0 420px;opacity:.5;cursor:default}
+.slide.side.swiper-slide-active{opacity:1}
+.slides .swiper-pagination-bullet-active{background:var(--cc-red)}
 .s-party{background:linear-gradient(135deg,#f3e8ff 0%,#ffe6ef 55%,#fff1c9 100%);display:flex;align-items:center;padding:36px 44px;gap:10px}
 .s-party .txt{flex:1}
 .s-party .chars{display:flex;align-items:flex-end}.s-party .chars img{width:150px}.s-party .chars img+img{margin-left:-20px;width:140px}
@@ -310,7 +314,7 @@ textarea.inp{height:auto}
   .cc-nav{display:none}.cc-nav.open{display:flex;position:absolute;top:60px;left:0;right:0;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid var(--cc-line)}
   .cc-nav.open a{padding:14px 20px;border-top:1px solid #f0f0f0}
   .cc-search{display:none}.menu-btn{display:block}
-  .slide.side{display:none}.slide{height:auto}
+  .slide{height:auto}.slide.side{flex-basis:92vw}
   .s-party{flex-direction:column;align-items:flex-start;padding:26px}.s-party h2{font-size:32px}.s-party .logo{width:200px}.s-party .chars img{width:110px}.s-party .chars img+img{width:100px}
   .hero{grid-template-columns:1fr;gap:22px}.hero h1{font-size:32px}
   .incs{grid-template-columns:repeat(2,1fr)}
@@ -360,13 +364,22 @@ textarea.inp{height:auto}
 
 <!-- HOME -->
 <section class="view on" id="v-home">
-  <div class="slides">
-    <div class="slide side s-dark">Club Originals</div>
-    <div class="slide s-party" data-go="intro">
-      <div class="txt"><span class="tag">NEW · 월계점 단독</span><h2>생일파티는 특별하게,<br>준비는 간편하게!</h2><p>예약 한 번으로 장소·케이크·간식·답례품까지</p><img class="logo" data-img="logo" alt="파티버디"></div>
-      <div class="chars"><img data-img="padi" alt="파디"><img data-img="buddy" alt="버디"></div>
+  <div class="swiper slides">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide slide side s-dark">Club Originals</div>
+      <div class="swiper-slide slide s-party" data-go="intro">
+        <div class="txt"><span class="tag">NEW · 월계점 단독</span><h2>생일파티는 특별하게,<br>준비는 간편하게!</h2><p>예약 한 번으로 장소·케이크·간식·답례품까지</p><img class="logo" data-img="logo" alt="파티버디"></div>
+        <div class="chars"><img data-img="padi" alt="파디"><img data-img="buddy" alt="버디"></div>
+      </div>
+      <div class="swiper-slide slide side s-gen"><small>Culture Club [문화센터]</small><b>겨울학기<br>SPECIAL COUPON</b></div>
+      <div class="swiper-slide slide side s-dark">Kids &amp; Children</div>
+      <div class="swiper-slide slide s-party" data-go="intro">
+        <div class="txt"><span class="tag">WEEKEND · 특별한 하루</span><h2>친구들과 신나게,<br>추억은 오래오래!</h2><p>즐거운 놀이부터 맛있는 파티 메뉴까지 한 번에</p><img class="logo" data-img="logo" alt="파티버디"></div>
+        <div class="chars"><img data-img="padi" alt="파디"><img data-img="buddy" alt="버디"></div>
+      </div>
+      <div class="swiper-slide slide side s-gen"><small>Culture Club [문화센터]</small><b>봄학기<br>NEW CLASS</b></div>
     </div>
-    <div class="slide side s-gen"><small>Culture Club [문화센터]</small><b>겨울학기<br>SPECIAL COUPON</b></div>
+    <div class="swiper-pagination"></div>
   </div>
   <div class="cat"><h3>CATEGORY LIST</h3>
     <div class="cats"><div style="background:#7d6b5d">Club<br>Originals</div><div style="background:#c96b5a">Arts</div><div style="background:#5d6570">Economy</div><div style="background:#6c3d6e">Dance &amp;<br>Exercise</div><div style="background:#c49a1d">Music &amp; Play</div><div style="background:#b07c62">Drawing</div><div style="background:#5f7f5a">Parents<br>education</div><div style="background:#a77c6a">With Mom</div><div style="background:#4f7aa0">Kids &amp;<br>Children</div><div style="background:#7b8f6a">Home Cook</div></div>
@@ -682,9 +695,19 @@ textarea.inp{height:auto}
 <div class="toast" id="toast"></div>
 <canvas id="confetti"></canvas>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 (function(){
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+new Swiper('.slides',{
+  loop:true,
+  initialSlide:1,
+  centeredSlides:true,
+  slidesPerView:'auto',
+  spaceBetween:28,
+  autoplay:{delay:4000,disableOnInteraction:false},
+  pagination:{el:'.swiper-pagination',clickable:true}
+});
 const won=n=>n.toLocaleString('ko-KR')+'원';
 const sgn=n=>n>0?'+'+won(n):n<0?'−'+won(-n):'0원';
 const WD=['일','월','화','수','목','금','토'];
